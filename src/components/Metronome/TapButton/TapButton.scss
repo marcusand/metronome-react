@@ -1,0 +1,9 @@
+ .tap-button {
+   cursor: pointer;
+   font-size: 2rem;
+   transform: scale(1, 1);
+
+   &.flip {
+     transform: scale(-1, 1);
+   }
+ }
