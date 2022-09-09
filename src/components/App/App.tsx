@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { About } from '../Routes/About/About';
 import { Home } from '../Routes/Home/Home';
+import './App.scss';
 
 interface Props {}
 

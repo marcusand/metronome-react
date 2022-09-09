@@ -1,1 +1,13 @@
-@use './assets/styles/reset.scss'
+@use './assets/styles/colors.scss';
+@use './assets/styles/reset.scss';
+
+html {
+  position: fixed;
+  height: 100%;
+  touch-action: manipulation;
+  font-family: Futura, Verdana, sans-serif;
+}
+
+a {
+  color: var(--color-beta);
+}

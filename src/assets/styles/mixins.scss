@@ -1,0 +1,15 @@
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+@mixin lg {
+  @media (min-width: 768px) {
+    @content;
+  }
+}

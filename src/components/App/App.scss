@@ -1,0 +1,29 @@
+@use '../../assets/styles/mixins.scss' as m;
+
+.outer-container {
+  @include m.full-size();
+  @include m.grid-center();
+
+  background-color: var(--color-alpha);
+
+  .inner-container {
+    @include m.full-size();
+
+    color: var(--color-beta);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    user-select: none;
+
+    @include m.lg {
+      width: 450px;
+      height: 700px;
+      border: 2px solid var(--color-black);
+      border-radius: 20px;
+      padding: 1rem;
+    }
+  }
+}
