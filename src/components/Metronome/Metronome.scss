@@ -1,0 +1,19 @@
+ .buttons {
+   display: flex;
+   justify-content: space-around;
+   align-items: flex-start;
+ }
+
+ .poti {
+   margin-top: 1.5rem;
+ }
+
+ .volume-slider {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .volume-slider label {
+   text-align: center;
+   color: var(--color-black);
+ }
