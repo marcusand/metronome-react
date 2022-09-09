@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { About } from '../Routes/About/About';
+import { Home } from '../Routes/Home/Home';
 
 interface Props {}
 
@@ -9,8 +11,8 @@ export const App: React.FC<Props> = () => {
       <div className="inner-container">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<div>home</div>} />
-            <Route path="/about" element={<div>about</div>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </BrowserRouter>
       </div>
