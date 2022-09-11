@@ -15,7 +15,7 @@ export const TapButton: React.FC = () => {
   const tap = () => {
     const currentTap = Date.now();
 
-    if (lastTapRef.current) {
+    if (lastTapRef.current > 0) {
       const diff = (currentTap - lastTapRef.current) / 1000;
       const bpm = Math.min(Math.round(60 / diff), maxBpm);
 
