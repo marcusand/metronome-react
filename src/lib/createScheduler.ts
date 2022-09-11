@@ -22,7 +22,7 @@ export const createScheduler: CreateScheduler = (config) => {
   let bpm = config.bpm;
 
   let nextNoteTime: number;
-  let timeoutId: NodeJS.Timeout;
+  let timeoutId: number | undefined;
   let count = 0;
 
   const schedule = () => {
