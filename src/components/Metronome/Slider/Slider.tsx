@@ -12,7 +12,7 @@ interface Props {
 export const Slider: React.FC<Props> = ({ id = '', min, max, value, onChange }) => {
   return (
     <div className="slider-container">
-      <input type="button" className="button" value="-" />
+      <input type="button" className="button" value="-" onClick={() => onChange(value - 1)} />
       <input
         type="range"
         className="slider"
@@ -22,7 +22,7 @@ export const Slider: React.FC<Props> = ({ id = '', min, max, value, onChange }) 
         onChange={(e) => onChange(parseInt(e.target.value))}
         value={value}
       />
-      <input type="button" className="button" value="+" />
+      <input type="button" className="button" value="+" onClick={() => onChange(value + 1)} />
     </div>
   );
 };
