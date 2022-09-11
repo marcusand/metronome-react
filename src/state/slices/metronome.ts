@@ -12,6 +12,8 @@ export interface MetronomeState {
   timeSignature: number;
   volume: number;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
+  minBpm: number;
+  maxBpm: number;
 }
 
 const initialState: MetronomeState = {
@@ -21,6 +23,8 @@ const initialState: MetronomeState = {
   timeSignature: 3,
   volume: 100,
   loading: 'idle',
+  minBpm: 40,
+  maxBpm: 220,
 };
 
 export const metronomeSlice = createSlice({

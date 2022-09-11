@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPlaying } from '../../../state/selectors/metronome';
+import { actions } from '../../../state/slices/metronome';
 import './PlayButton.scss';
 
 const PlayIcon: React.FC = () => (
@@ -14,15 +17,16 @@ const PauseIcon: React.FC = () => (
   </svg>
 );
 
-interface Props {
-  playing: boolean;
-  onPlay: () => void;
-  onPause: () => void;
-}
+export const PlayButton: React.FC = () => {
+  const playing = useSelector(selectPlaying);
+  const dispatch = useDispatch();
 
-export const PlayButton: React.FC<Props> = ({ playing, onPlay, onPause }) => {
+  const handleClick = () => {
+    playing ? dispatch(actions.pause()) : dispatch(actions.play());
+  };
+
   return (
-    <div className="play-button" onClick={() => (playing ? onPause() : onPlay())}>
+    <div className="play-button" onClick={handleClick}>
       <div className="icon-container">{playing ? <PauseIcon /> : <PlayIcon />}</div>
     </div>
   );

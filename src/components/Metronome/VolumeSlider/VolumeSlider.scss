@@ -1,0 +1,10 @@
+.volume-slider {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.volume-slider label {
+  text-align: center;
+  color: var(--color-black);
+}
