@@ -7,7 +7,10 @@
   background-color: var(--color-alpha);
 
   .inner-container {
+    --height: 700px;
+
     @include m.full-size();
+    max-height: var(--height);
 
     color: var(--color-beta);
     display: flex;
@@ -20,7 +23,7 @@
 
     @include m.lg {
       width: 450px;
-      height: 700px;
+      height: var(--height);
       border: 2px solid var(--color-black);
       border-radius: 20px;
       padding: 1rem;

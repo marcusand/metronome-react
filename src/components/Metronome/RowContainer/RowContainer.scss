@@ -1,9 +1,0 @@
-@use '../../../assets/styles/mixins.scss' as m;
-
-.row-container {
-  margin: 0.8rem 0;
-
-  @include m.lg {
-    margin: 1.2rem 0;
-  }
-}
