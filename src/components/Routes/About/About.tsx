@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Footer } from '../../Footer/Footer';
 import './About.scss';
 
 export const About: React.FC = () => {
@@ -35,9 +36,9 @@ export const About: React.FC = () => {
           me an <a href="mailto:mail@marcusand.de">email</a>
         </p>
       </section>
-      <div className="back">
+      <Footer>
         <Link to="/">back</Link>
-      </div>
+      </Footer>
     </div>
   );
 };

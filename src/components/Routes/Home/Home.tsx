@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import NoSleep from 'nosleep.js';
 import { Metronome } from '../../Metronome/Metronome';
+import { Footer } from '../../Footer/Footer';
 import './Home.scss';
 
 export const Home: React.FC = () => {
@@ -25,9 +26,9 @@ export const Home: React.FC = () => {
   return (
     <>
       <Metronome />
-      <div className="menu">
+      <Footer>
         <Link to="/about">about</Link>
-      </div>
+      </Footer>
     </>
   );
 };

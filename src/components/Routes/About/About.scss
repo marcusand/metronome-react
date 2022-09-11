@@ -3,9 +3,6 @@
 .about {
   @include m.full-size();
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: var(--color-black);
   text-align: left;
   padding: 1rem;
@@ -13,11 +10,5 @@
   h2,
   p {
     margin: 1rem 0;
-  }
-
-  .back {
-    position: absolute;
-    bottom: 2%;
-    font-size: 0.7rem;
   }
 }
