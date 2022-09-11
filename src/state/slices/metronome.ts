@@ -81,6 +81,12 @@ export const initializeMetronome = () => async (dispatch: Dispatch, getState: ()
     metronome.setTimeSignature(initialState.timeSignature);
     metronome.setVolume(initialState.volume);
 
+    /**
+     * we don't care what the initial play state is,
+     * we are always setting it to false on initialization
+     * since we need the user interaction for the audio context
+     * to start
+     */
     dispatch(actions.setPlaying(false));
 
     await metronome.loadSamples();
