@@ -25,8 +25,8 @@ export const Home: React.FC<Props> = () => {
 
   return (
     <>
+      <Metronome />
       <div className="menu">
-        <Metronome />
         <Link to="/about">about</Link>
       </div>
     </>

@@ -47,7 +47,7 @@ export const Metronome: React.FC<Props> = () => {
       <RowContainer width="100%">
         <Slider id="bpm-slider" min={MIN_BPM} max={MAX_BPM} value={bpm} onChange={setBpm} />
       </RowContainer>
-      <RowContainer>
+      <RowContainer width="60%">
         <div className="buttons">
           <Poti title="time" stepsCount={12} value={timeSignature} onChange={setTimeSignature} />
           <PlayButton playing={playing} onPlay={setPlay} onPause={setPause} />
