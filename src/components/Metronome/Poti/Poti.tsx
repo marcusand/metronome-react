@@ -13,18 +13,14 @@ const maxAngle = 130;
 
 export const Poti: React.FC<Props> = ({ title = '', stepsCount, value, onChange }) => {
   const mouseDownY = useRef(0);
-  const mouseDownAngle = useRef(0);
+  const mouseDownStep = useRef(0);
 
   const angleOfOneStep = (Math.abs(minAngle) + maxAngle) / (stepsCount - 1);
-  const anglesLookUp = Array(stepsCount)
-    .fill(0)
-    .map((_, index) => Math.round(minAngle + index * angleOfOneStep));
-
-  const currentAngle = anglesLookUp[value];
+  const currentAngle = minAngle + value * angleOfOneStep;
 
   const handlePointerDown: React.PointerEventHandler<HTMLDivElement> = (event) => {
     mouseDownY.current = event.pageY;
-    mouseDownAngle.current = currentAngle;
+    mouseDownStep.current = value;
 
     if (event.pointerType === 'touch') {
       document.addEventListener('touchmove', handlePointerMove);
@@ -48,23 +44,18 @@ export const Poti: React.FC<Props> = ({ title = '', stepsCount, value, onChange 
   const handlePointerMove = (event: TouchEvent | PointerEvent) => {
     let pageY;
 
-    if (event instanceof PointerEvent) {
-      pageY = event.pageY;
-    } else {
+    if (event instanceof TouchEvent) {
       pageY = event.targetTouches[0].pageY;
+    } else {
+      pageY = event.pageY;
     }
 
     const dy = mouseDownY.current - pageY;
-    const newAngle = mouseDownAngle.current + dy * 5;
-    const newAngleCapped = Math.max(minAngle, Math.min(maxAngle, newAngle));
+    const dStep = Math.round(dy * (stepsCount * 0.01));
+    const newStep = mouseDownStep.current + dStep;
+    const newStepCapped = Math.min(Math.max(newStep, 0), stepsCount - 1);
 
-    const nearestStep = anglesLookUp.findIndex((angle) => {
-      return newAngleCapped - angle < angleOfOneStep;
-    });
-
-    if (nearestStep !== currentAngle) {
-      onChange(nearestStep);
-    }
+    onChange(newStepCapped);
   };
 
   return (
