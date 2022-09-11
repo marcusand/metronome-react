@@ -1,7 +1,7 @@
 export type CreateSchedulerConfig = {
   audioContext: AudioContext;
   timeoutLookahead?: number;
-  schedulerLookhead?: number;
+  schedulerLookahead?: number;
   bpm: number;
   onTick: (count: number, when: number) => void;
 };
@@ -16,7 +16,7 @@ export type CreateScheduler = (config: CreateSchedulerConfig) => Scheduler;
 
 export const createScheduler: CreateScheduler = (config) => {
   const timeoutLookahead = config.timeoutLookahead ?? 25;
-  const schedulerLookahead = config.schedulerLookhead ?? 0.1;
+  const schedulerLookahead = config.schedulerLookahead ?? 0.1;
   const audioContext = config.audioContext;
   const onTick = config.onTick;
   let bpm = config.bpm;
@@ -57,6 +57,6 @@ export const createScheduler: CreateScheduler = (config) => {
   return {
     start,
     stop,
-    setBpm
+    setBpm,
   };
 };
