@@ -1,0 +1,24 @@
+.play-button {
+  --size: 4rem;
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border: 2px solid var(--color-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .icon-container {
+    --size: 2rem;
+
+    width: var(--size);
+    height: var(--size);
+
+    svg path,
+    svg rect {
+      fill: var(--color-beta);
+    }
+  }
+}
