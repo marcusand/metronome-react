@@ -18,6 +18,7 @@ export const Home: React.FC<Props> = () => {
     document.addEventListener('click', enableNoSleep);
 
     return () => {
+      // eslint-disable-next-line
       noSleepRef.current.disable();
       document.removeEventListener('click', enableNoSleep);
     };

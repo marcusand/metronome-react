@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Slider } from '../Slider/Slider';
 import { selectBpm, selectMaxBpm, selectMinBpm } from '../../../state/selectors/metronome';
 import { setBpm } from '../../../state/slices/metronome';
 import { AppDispatch } from '../../../state/store';
-import { Slider } from '../Slider/Slider';
 
 export const BpmSlider: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
