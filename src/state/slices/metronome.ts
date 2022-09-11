@@ -1,6 +1,7 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createMetronome, Metronome } from '../../lib/createMetronome';
+import { RootState } from '../store';
 
 let metronome: Metronome;
 
@@ -17,7 +18,7 @@ const initialState: MetronomeState = {
   playing: false,
   bpm: 80,
   sampleSet: 0,
-  timeSignature: 4,
+  timeSignature: 3,
   volume: 100,
   loading: 'idle',
 };
@@ -68,7 +69,7 @@ export const metronomeSlice = createSlice({
 
 export const { reducer, actions } = metronomeSlice;
 
-export const initializeMetronome = () => async (dispatch: Dispatch) => {
+export const initializeMetronome = () => async (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.loadingPending());
 
   try {
@@ -79,6 +80,15 @@ export const initializeMetronome = () => async (dispatch: Dispatch) => {
         ['/audio/cowbell.mp3', '/audio/cowbell-accent.mp3'],
       ],
     });
+
+    const {
+      metronome: { volume, sampleSet, timeSignature, bpm },
+    } = getState();
+
+    metronome.setVolume(volume);
+    metronome.setSampleSet(sampleSet);
+    metronome.setTimeSignature(timeSignature);
+    metronome.setBpm(bpm);
   } catch (error) {
     dispatch(actions.loadingFailed());
   }
