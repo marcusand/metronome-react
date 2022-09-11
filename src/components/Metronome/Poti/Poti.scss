@@ -1,0 +1,40 @@
+.poti-container {
+  .poti {
+    --size: 3rem;
+
+    width: var(--size);
+    height: var(--size);
+    margin-bottom: 0.25rem;
+    border: 2px solid var(--color-black);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none;
+    user-select: none;
+
+    .stroke-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .stroke {
+      width: 2px;
+      height: calc(var(--size) / 4);
+      background-color: var(--color-black);
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .title {
+    text-align: center;
+    color: var(--color-black);
+  }
+}
