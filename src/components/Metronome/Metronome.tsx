@@ -5,6 +5,7 @@ import {
   selectPlaying,
   selectSampleSet,
   selectTimeSignature,
+  selectVolume,
 } from '../../state/selectors/metronome';
 import { BpmInfo } from './BpmInfo/BpmInfo';
 import { RowContainer } from './RowContainer/RowContainer';
@@ -26,12 +27,14 @@ export const Metronome: React.FC<Props> = () => {
   const timeSignature = useSelector(selectTimeSignature);
   const sampleSet = useSelector(selectSampleSet);
   const playing = useSelector(selectPlaying);
+  const volume = useSelector(selectVolume);
 
   const setBpm = (value: number) => dispatch(metronome.setBpm(value));
   const setTimeSignature = (value: number) => dispatch(metronome.setTimeSignature(value));
   const setSampleSet = (value: number) => dispatch(metronome.setSampleSet(value));
   const setPlay = () => dispatch(metronome.play());
   const setPause = () => dispatch(metronome.pause());
+  const setVolume = (value: number) => dispatch(metronome.setVolume(value));
 
   return (
     <>
@@ -49,6 +52,12 @@ export const Metronome: React.FC<Props> = () => {
           <Poti title="time" stepsCount={12} value={timeSignature} onChange={setTimeSignature} />
           <PlayButton playing={playing} onPlay={setPlay} onPause={setPause} />
           <Poti title="sound" stepsCount={3} value={sampleSet} onChange={setSampleSet} />
+        </div>
+      </RowContainer>
+      <RowContainer width="60%">
+        <div className="volume-slider">
+          <Slider id="volume-slider" min={0} max={100} value={volume} onChange={setVolume} />
+          <label htmlFor="volume-slider">volume</label>
         </div>
       </RowContainer>
     </>
