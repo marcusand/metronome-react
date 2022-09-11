@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Poti } from '../Poti/Poti';
 import { selectSampleSet } from '../../../state/selectors/metronome';
-import { actions } from '../../../state/slices/metronome';
+import { AppDispatch } from '../../../state/store';
+import { setSampleSet } from '../../../state/slices/metronome';
 
 export const SoundPoti: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const sampleSet = useSelector(selectSampleSet);
 
   return (
@@ -13,7 +14,7 @@ export const SoundPoti: React.FC = () => {
       title="sound"
       stepsCount={3}
       value={sampleSet}
-      onChange={(value) => dispatch(actions.setSampleSet(value))}
+      onChange={(value) => dispatch(setSampleSet(value))}
     />
   );
 };

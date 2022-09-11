@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createMetronome, Metronome } from '../../lib/createMetronome';
 import { RootState } from '../store';
 
-let metronome: Metronome;
+let metronome: Metronome | undefined;
 
 export interface MetronomeState {
   playing: boolean;
@@ -40,44 +40,33 @@ export const metronomeSlice = createSlice({
     loadingFailed(state) {
       state.loading = 'failed';
     },
-    play(state) {
-      metronome.play();
-      state.playing = true;
-    },
-    pause(state) {
-      metronome.pause();
-      state.playing = false;
+    setPlaying(state, action: PayloadAction<boolean>) {
+      state.playing = action.payload;
     },
     setVolume(state, action: PayloadAction<number>) {
-      const { payload } = action;
-      metronome.setVolume(payload);
-      state.volume = payload;
+      state.volume = action.payload;
     },
     setSampleSet(state, action: PayloadAction<number>) {
-      const { payload } = action;
-      metronome.setSampleSet(payload);
-      state.sampleSet = payload;
+      state.sampleSet = action.payload;
     },
     setTimeSignature(state, action: PayloadAction<number>) {
-      const { payload } = action;
-      metronome.setTimeSignature(payload);
-      state.timeSignature = payload;
+      state.timeSignature = action.payload;
     },
     setBpm(state, action: PayloadAction<number>) {
-      const { payload } = action;
-      metronome.setBpm(payload);
-      state.bpm = payload;
+      state.bpm = action.payload;
     },
   },
 });
 
-export const { reducer, actions } = metronomeSlice;
+const { actions } = metronomeSlice;
+
+export const { reducer } = metronomeSlice;
 
 export const initializeMetronome = () => async (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.loadingPending());
 
   try {
-    metronome = await createMetronome({
+    metronome = createMetronome({
       samples: [
         ['/audio/wood.mp3', '/audio/wood-accent.mp3'],
         ['/audio/hihat.mp3', '/audio/hihat-accent.mp3'],
@@ -85,17 +74,62 @@ export const initializeMetronome = () => async (dispatch: Dispatch, getState: ()
       ],
     });
 
-    const {
-      metronome: { volume, sampleSet, timeSignature, bpm },
-    } = getState();
+    const { metronome: initialState } = getState();
 
-    metronome.setVolume(volume);
-    metronome.setSampleSet(sampleSet);
-    metronome.setTimeSignature(timeSignature);
-    metronome.setBpm(bpm);
+    metronome.setBpm(initialState.bpm);
+    metronome.setSampleSet(initialState.sampleSet);
+    metronome.setTimeSignature(initialState.timeSignature);
+    metronome.setVolume(initialState.volume);
+
+    dispatch(actions.setPlaying(false));
+
+    await metronome.loadSamples();
   } catch (error) {
     dispatch(actions.loadingFailed());
+    return;
   }
 
   dispatch(actions.loadingSucceeded());
+};
+
+export const play = () => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.play();
+    dispatch(actions.setPlaying(true));
+  }
+};
+
+export const pause = () => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.pause();
+    dispatch(actions.setPlaying(false));
+  }
+};
+
+export const setVolume = (value: number) => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.setVolume(value);
+    dispatch(actions.setVolume(value));
+  }
+};
+
+export const setSampleSet = (value: number) => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.setSampleSet(value);
+    dispatch(actions.setSampleSet(value));
+  }
+};
+
+export const setTimeSignature = (value: number) => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.setTimeSignature(value);
+    dispatch(actions.setTimeSignature(value));
+  }
+};
+
+export const setBpm = (value: number) => (dispatch: Dispatch) => {
+  if (metronome) {
+    metronome.setBpm(value);
+    dispatch(actions.setBpm(value));
+  }
 };

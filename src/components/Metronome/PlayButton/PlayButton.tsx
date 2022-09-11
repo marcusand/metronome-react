@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPlaying } from '../../../state/selectors/metronome';
-import { actions } from '../../../state/slices/metronome';
+import { pause, play } from '../../../state/slices/metronome';
+import { AppDispatch } from '../../../state/store';
 import './PlayButton.scss';
 
 const PlayIcon: React.FC = () => (
@@ -18,11 +19,11 @@ const PauseIcon: React.FC = () => (
 );
 
 export const PlayButton: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
   const playing = useSelector(selectPlaying);
-  const dispatch = useDispatch();
 
   const handleClick = () => {
-    playing ? dispatch(actions.pause()) : dispatch(actions.play());
+    playing ? dispatch(pause()) : dispatch(play());
   };
 
   return (

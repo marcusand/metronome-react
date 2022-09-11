@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMaxBpm, selectMinBpm } from '../../../state/selectors/metronome';
-import { actions } from '../../../state/slices/metronome';
+import { setBpm } from '../../../state/slices/metronome';
+import { AppDispatch } from '../../../state/store';
 import './TapButton.scss';
 
 interface Props {}
 
 export const TapButton: React.FC<Props> = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const minBpm = useSelector(selectMinBpm);
   const maxBpm = useSelector(selectMaxBpm);
   const [flip, setFlip] = useState(false);
@@ -21,7 +22,7 @@ export const TapButton: React.FC<Props> = () => {
       const bpm = Math.min(Math.round(60 / diff), maxBpm);
 
       if (bpm >= minBpm) {
-        dispatch(actions.setBpm(bpm));
+        dispatch(setBpm(bpm));
       }
     }
 

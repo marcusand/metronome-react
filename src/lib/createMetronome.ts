@@ -16,11 +16,12 @@ export type Metronome = {
   setVolume: (value: number) => void;
   setSampleSet: (value: number) => void;
   setTimeSignature: (value: number) => void;
+  loadSamples: () => Promise<void>;
 };
 
-export type CreateMetronome = (config: CreateMetronomeConfig) => Promise<Metronome>;
+export type CreateMetronome = (config: CreateMetronomeConfig) => Metronome;
 
-export const createMetronome: CreateMetronome = async ({ samples }) => {
+export const createMetronome: CreateMetronome = ({ samples }) => {
   let sampleSet = 0;
   let timeSignature = 3;
   let samplesLoaded = false;
@@ -91,8 +92,6 @@ export const createMetronome: CreateMetronome = async ({ samples }) => {
     gainNode.gain.value = value / 100;
   };
 
-  await loadSamples();
-
   return {
     play,
     pause,
@@ -101,5 +100,6 @@ export const createMetronome: CreateMetronome = async ({ samples }) => {
     setSampleSet,
     setTimeSignature,
     setVolume,
+    loadSamples,
   };
 };
