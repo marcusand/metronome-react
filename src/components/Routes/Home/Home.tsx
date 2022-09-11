@@ -4,9 +4,7 @@ import NoSleep from 'nosleep.js';
 import { Metronome } from '../../Metronome/Metronome';
 import './Home.scss';
 
-interface Props {}
-
-export const Home: React.FC<Props> = () => {
+export const Home: React.FC = () => {
   const noSleepRef = useRef(new NoSleep());
 
   const enableNoSleep = () => {

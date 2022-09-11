@@ -6,9 +6,7 @@ import { About } from '../Routes/About/About';
 import { Home } from '../Routes/Home/Home';
 import './App.scss';
 
-interface Props {}
-
-export const App: React.FC<Props> = () => {
+export const App: React.FC = () => {
   const loading = useSelector(selectLoading);
 
   return (

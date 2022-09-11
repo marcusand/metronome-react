@@ -5,9 +5,7 @@ import { setBpm } from '../../../state/slices/metronome';
 import { AppDispatch } from '../../../state/store';
 import './TapButton.scss';
 
-interface Props {}
-
-export const TapButton: React.FC<Props> = () => {
+export const TapButton: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const minBpm = useSelector(selectMinBpm);
   const maxBpm = useSelector(selectMaxBpm);
