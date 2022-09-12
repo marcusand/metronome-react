@@ -27,8 +27,8 @@ export const PlayButton: React.FC = () => {
   };
 
   return (
-    <div className="play-button" onClick={handleClick}>
+    <button className="play-button" onClick={handleClick}>
       <div className="icon-container">{playing ? <PauseIcon /> : <PlayIcon />}</div>
-    </div>
+    </button>
   );
 };
