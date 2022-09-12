@@ -90,12 +90,10 @@ export const initializeMetronome = () => async (dispatch: Dispatch, getState: ()
     dispatch(actions.setPlaying(false));
 
     await metronome.loadSamples();
+    dispatch(actions.loadingSucceeded());
   } catch (error) {
     dispatch(actions.loadingFailed());
-    return;
   }
-
-  dispatch(actions.loadingSucceeded());
 };
 
 export const play = () => (dispatch: Dispatch) => {
