@@ -8,6 +8,10 @@ html {
   font-family: Futura, Verdana, sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 a {
   color: var(--color-beta);
 }
