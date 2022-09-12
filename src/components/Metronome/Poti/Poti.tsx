@@ -42,7 +42,7 @@ export const Poti: React.FC<Props> = ({ title = '', stepsCount, value, onChange 
   };
 
   const handlePointerMove = (event: TouchEvent | PointerEvent) => {
-    let pageY;
+    let pageY: number;
 
     if (event instanceof TouchEvent) {
       pageY = event.targetTouches[0].pageY;
